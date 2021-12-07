@@ -1,28 +1,30 @@
 package com.hz;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 public class Main {
 
-    // READ THE INSTRUCTIONS IN THIS METHOD, PLEASE!!!
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
-        // Lets print some cards
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         Printer printer = new Console();
+        Card card = null;
 
-        // INSTRUCTIONS, READ CAREFULLY !!!!!!!!!!!!!!!!!!!!!!!!!!
-        // For a normal postcard use: true, false
-        // For a graduation card use: false, true
+        System.out.println("\nWhich Card to send? Input number.\n" +
+                "1 - Regular\n" +
+                "2 - Graduation");
 
+        int choice = Integer.parseInt(reader.readLine());
+        //Create Card Graduation
+        if (choice == 1){
+            card = new PostCardGraduation(printer);
+        } else if (choice == 2){
+            card = new RegularGreating(printer);
+        }
 
-        // ONLY SET ONE OF THE BOOLEAN PARAMETERS TO TRUE!!!!
-        // DON'T FORGET THAT!
-
-        // WE NEED TO MAKE THIS MESSY CODE BETTER IMHO, MAYBE ONE OF THE SKILLED
-        // HBO-ICT STUDENTS CAN HELP US OUT.
-
-        // IF WE HAVE TO ADD AN OTHER TYPE OF CARD...
-        // ...I QUIT THIS JOB.
-        PostCard card = new PostCard(printer, false, true);
-
+        //Prints card out
         card.print();
     }
 }
